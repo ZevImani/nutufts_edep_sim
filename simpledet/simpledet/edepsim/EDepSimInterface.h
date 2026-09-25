@@ -21,6 +21,7 @@ namespace edepsim {
     virtual ~EDepSimInterface() {};
 
     bool processSegmentHits( const TG4HitSegmentContainer& hit_container );
+    bool processSegmentHitsXZ( const TG4HitSegmentContainer& hit_container );
     TH2D* makeWholeDetectorTH2D( const TG4HitSegmentContainer& hit_container );
     PyObject* makeNumpyArrayCrop( const TG4HitSegmentContainer& hit_container, int img_pixdim,
 				  int offset_x_pixels, int offset_y_pixels,

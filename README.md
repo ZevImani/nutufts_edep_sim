@@ -49,6 +49,9 @@ edep-sim -g ../../shower_classifier_clue/larblock.gdml -o test.root -e 5 ../../s
 # convert simulation information into images+metadata and store into petastorm db
 python3 test_save2petastormdb.py --input-edepsim test.root -ow --petastorm-db-folder /tmp/test_db/ --tag electron_test --pdgcode 11 --runid 0
 
+# Hack: visulaize -- to avoid petastorm db 
+python3 test_save2petastormdb.py -v true --input-edepsim test.root -ow --petastorm-db-folder /tmp/test_db/ --tag electron_test --pdgcode 11 --runid 0
+
 # the above command made a pyspark database that now lives in /tmp/test_db
 # look inside the folder
 ls /tmp/test_db/

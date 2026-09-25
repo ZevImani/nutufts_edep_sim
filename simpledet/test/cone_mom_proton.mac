@@ -1,0 +1,42 @@
+/edep/random/timeRandomSeed
+
+# set edep
+/edep/db/set/saveAllPrimTraj true
+/edep/db/set/lengthThreshold 0.5 mm
+/edep/db/set/trajectoryAccuracy 0.5 mm
+/edep/db/set/neutronThreshold 10 MeV
+/edep/db/set/gammaThreshold 5.0 MeV
+/edep/hitLength LArD 0.5 mm 
+/edep/hitLength drift 0.5 mm
+/edep/hitLength cryo 0.5 mm
+/edep/phys/allCuts 0.5 mm
+/edep/update
+
+## Custom Momentum generator 
+/gps/particle proton
+/gps/position 0.0 0.0 0.0 cm
+
+# Energy distribution: uniform between 50-100 MeV
+/gps/ene/type Lin
+/gps/ene/min 50 MeV
+/gps/ene/max 100 MeV
+/gps/ene/gradient 0
+/gps/ene/intercept 1
+
+# Angular distribution: cone in positive x direction with diagonal variance
+/gps/ang/type iso
+/gps/ang/mintheta 0 deg
+/gps/ang/maxtheta 30 deg
+/gps/ang/minphi 0 deg
+/gps/ang/maxphi 360 deg
+# /gps/direction 0 1 0
+
+# /control/verbose 1
+# /run/verbose 1
+# /tracking/verbose 1
+# /event/verbose 1
+
+/run/initialize
+
+# Turn off optical processes
+/process/inactivate Cerenkov

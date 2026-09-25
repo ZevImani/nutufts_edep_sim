@@ -1,0 +1,48 @@
+####################################################################
+# Generate protons with specific momentum vector (389.8, -32.53, 245.2) MeV/c
+#
+# This macro configures the GPS particle source to generate protons
+# with a specific momentum vector
+####################################################################
+
+# Clear any existing particle sources
+/gps/source/clear
+
+# Define the particle type
+/gps/particle proton
+
+# Calculate the total momentum magnitude
+# |p| = sqrt(389.8^2 + (-32.53)^2 + 245.2^2) = sqrt(151944.04 + 1058.2009 + 60123.04) = sqrt(213125.28) ≈ 461.76 MeV/c
+
+# For a proton: E^2 = (pc)^2 + (mc^2)^2
+# where m_proton c^2 = 938.272 MeV
+# E = sqrt((461.76)^2 + (938.272)^2) = sqrt(213222.42 + 880353.86) = sqrt(1093576.28) ≈ 1045.74 MeV
+# Kinetic Energy = E - mc^2 = 1045.74 - 938.272 ≈ 107.47 MeV
+
+/gps/energy 107.47 MeV
+
+# Set the momentum direction (normalized)
+# Direction = (389.8, -32.53, 245.2) / 461.76 = (0.8441, -0.0705, 0.5311)
+/gps/direction 0.8441 -0.0705 0.5311
+
+# Set the position of the particle gun (you can adjust this)
+/gps/position 0.0 0.0 0.0 mm
+
+# Optional: Set position type if you want a distributed source
+# /gps/pos/type Point  # This is default
+# Or for a volume source:
+# /gps/pos/type Volume
+# /gps/pos/shape Box
+# /gps/pos/halfx 10 cm
+# /gps/pos/halfy 10 cm
+# /gps/pos/halfz 10 cm
+
+# Optional: Add timing if needed
+# /gps/time 0 ns
+
+# Add the GPS generator to the event
+/generator/add
+
+# Optional: Set verbosity for debugging
+# /tracking/verbose 1
+# /gps/verbose 2

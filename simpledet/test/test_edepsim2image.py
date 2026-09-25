@@ -14,7 +14,7 @@ parser.add_argument('--output-rootfile',type=str,
                     help='If output-format is "root", this is required to set the output file')
 parser.add_argument('--petastorm-db-folder', '-db', type=str,
                     help='If output-format is "petastorm", this argument is required in order to set the location to the petastorm database folder.')
-parser.add_argument('--root-batchmode', '-b', type=bool, default=False, action=store_true,
+parser.add_argument('--root-batchmode', '-b', type=bool, default=False, #action=store_true,
                     help='If using "root" mode, run without drawing to canvas.')
 
 
@@ -33,13 +33,13 @@ print(IEdepSim)
 if not os.path.exists(args.input_edepsim):
     print("Cannot find input EDepSim file at ",args.input_edepsim)
     print("Quitting")
-    return 1
+    exit()
 
 inputfile = rt.TFile( args.input_edepsim, "open" )
 edeptree = inputfile.Get("EDepSimEvents")
 if edeptree is None:
     print("Cannot load the expected EDepSimEvents ROOT tree in the input file. Qutting.")
-    return 1
+    exit()
 
 
 nentries = edeptree.GetEntries()
@@ -49,20 +49,20 @@ print("Loaded EDepSimEvents tree. Number of entries: ",nentries)
 # We will try ROOT's PyTorch Batch Loader ...
 # https://root.cern/doc/v630/RBatchGenerator__PyTorch_8py.html
 # we can either dump to ROOT file, or store into a petastorm (local) database
-if args.output_format=="root":
-    if True:
-        print("Preferred way for now is petastorm loader. It's known to work with multithreading, so is expected to be fast.")
-        sys.exit(1)
-    if os.path.exists( args.output_rootfile ):
-        print("output file already exists. will not overwite. output path given:",args.output_rootfile )
-        return 1
+# if args.output_format=="root":
+#     if True:
+#         print("Preferred way for now is petastorm loader. It's known to work with multithreading, so is expected to be fast.")
+#         sys.exit(1)
+#     if os.path.exists( args.output_rootfile ):
+#         print("output file already exists. will not overwite. output path given:",args.output_rootfile )
+#         exit()
 
-    out_rootfile = rt.TFile( args.output_rootfile, 'new' )
-elif args.output_format=="petastorm":
-    pass
-else:
-    print("Unrecgonized output format")
-    sys.exit(1)
+#     out_rootfile = rt.TFile( args.output_rootfile, 'new' )
+# elif args.output_format=="petastorm":
+#     pass
+# else:
+#     print("Unrecgonized output format")
+#     sys.exit(1)
 
 
 #c1 = rt.TCanvas("c1","",800,600)

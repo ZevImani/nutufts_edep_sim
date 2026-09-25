@@ -1,0 +1,51 @@
+/edep/random/timeRandomSeed
+
+# set edep
+/edep/db/set/saveAllPrimTraj true
+/edep/db/set/lengthThreshold 0.5 mm
+/edep/db/set/trajectoryAccuracy 0.5 mm
+/edep/db/set/neutronThreshold 10 MeV
+/edep/db/set/gammaThreshold 5.0 MeV
+/edep/hitLength LArD 0.5 mm 
+/edep/hitLength drift 0.5 mm
+/edep/hitLength cryo 0.5 mm
+/edep/phys/allCuts 0.5 mm
+/edep/update
+
+## Custom Momentum generator 
+/gps/particle proton
+/gps/position 0.0 0.0 0.0 cm
+
+# /gps/pos/type Point
+# /gps/energy 100 MeV
+
+/gps/ene/type Lin
+/gps/ene/min 50 MeV
+/gps/ene/max 100 MeV
+/gps/ene/gradient 0
+/gps/ene/intercept 1
+
+/gps/ang/type iso
+
+
+# /gps/ene/type Mono
+# /gps/ene/mono 89.82 MeV # kinetic energy = sqrt(px**2 + py**2 + pz**2 + mass**2) - mass
+# /gps/direction 249.1 -126.4 314.0
+
+# /gps/direction 314.0 -126.4 249.1 ##sample1 = (z,y,x)
+
+## Kinetic energy 
+# mag = np.sqrt(x**2 + y**2 + z**2)
+# mass = 938.272
+# totalE = np.sqrt(mag**2 + mass**2)
+# KE = totalE - mass 
+
+# /control/verbose 1
+# /run/verbose 1
+# /tracking/verbose 1
+# /event/verbose 1
+
+/run/initialize
+
+# Turn off optical processes
+/process/inactivate Cerenkov

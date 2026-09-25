@@ -1,0 +1,83 @@
+# Create electrons with momenta drawn from a uniform distribution
+
+/edep/random/timeRandomSeed
+
+# set edep
+/edep/db/set/saveAllPrimTraj true
+/edep/db/set/lengthThreshold 0.5 mm
+/edep/db/set/trajectoryAccuracy 0.5 mm
+/edep/db/set/neutronThreshold 10 MeV
+/edep/db/set/gammaThreshold 5.0 MeV
+/edep/hitLength LArD 0.5 mm
+/edep/hitLength drift 0.5 mm
+/edep/hitLength cryo 0.5 mm
+/edep/phys/allCuts 0.5 mm
+/edep/update
+
+# # Set generator
+# /gps/particle proton
+# /gps/position 0.0 0.0 -50.0 cm
+# # /gps/momenta 500 250 0 ## How? 
+# /gps/ene/type Mono
+# /gps/ene/mono 300 MeV
+# #/gps/ene/type Lin
+# #/gps/ene/min 10 MeV
+# #/gps/ene/max 200 MeV
+# #/gps/ene/gradient 0.0
+# #/gps/ene/intercept 1.0
+# /gps/direction 0.0 0.0 1.0
+
+## Custom Momentum generator 
+/gps/particle proton
+/gps/position 0.0 0.0 0.0 cm
+# /gps/Momentum 50 MeV 100 MeV 50 MeV
+/gps/ene/type Mono
+/gps/ene/mono 105 MeV
+/gps/direction 389.8 -32.53 245.2
+
+## what projection?? 
+# want 389.8 -245.2 -32.53 in x-y plane 
+
+/control/verbose 1
+/run/verbose 1
+#/tracking/verbose 1
+/event/verbose 1
+
+/run/initialize
+
+# Turn off optical processes
+/process/inactivate Cerenkov
+
+#/run/beamOn 1
+
+####################################################################
+#
+# Generate an isotropic 300 MeV proton.
+#
+# To generate 10 events, this can be run using edep-sim with the command
+#
+#  edep-sim -C -u -e 10 muon-100.mac
+#
+
+# Create the first particle source.  This source will be used to
+# specify the position of the vertex.  The any of the GPS direction
+# and energy commands can be used.
+
+# /gps/particle proton
+# /gps/energy 300 MeV
+
+# This generates the position of the particle gun.  It can be
+# used for the other particle guns to create a multi particle event.  The
+# /gps/position command must come first.
+
+# /gps/position 0.0 0.0 -15.0 cm
+# /gps/pos/type Volume
+# /gps/pos/shape Para
+# /gps/pos/halfx 10 cm
+# /gps/pos/halfy 10 cm
+# /gps/pos/halfz 10 cm
+
+# This generates the direction of the particle gun. 
+# /gps/ang/type iso
+
+# Do not include /run/beamOn here.

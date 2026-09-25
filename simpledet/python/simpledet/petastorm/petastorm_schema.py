@@ -37,7 +37,8 @@ def get_schema(name):
             ])
         else:
             raise ValueError("unrecognized schema: ",name)
-            
+    
+    SchemaDict[name] = SimpleDetShowerSchema_v0
             
     return SchemaDict[name]
 

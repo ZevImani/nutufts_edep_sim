@@ -15,22 +15,29 @@
 /edep/update
 
 # Set generator
-/gps/particle e-
-#/gps/particle gamma
-/gps/position 0.0 0.0 -50.0 cm
-/gps/ene/type Mono
-/gps/ene/mono 100 MeV
-#/gps/ene/type Lin
-#/gps/ene/min 10 MeV
-#/gps/ene/max 200 MeV
-#/gps/ene/gradient 0.0
-#/gps/ene/intercept 1.0
-/gps/direction 0.0 0.0 1.0
+# /gps/particle e-
+/gps/particle proton
 
-/control/verbose 1
-/run/verbose 1
+## Custom Momentum generator 
+# /gps/particle proton
+/gps/position 0.0 0.0 0.0 cm
+/gps/ene/type Mono
+/gps/ene/mono 89.82 MeV # kinetic energy = sqrt(px**2 + py**2 + pz**2 + mass**2) - mass
+/gps/direction -249.1 -126.4 314.0
+
+## Uniform energy & isotropic angle 
+# /gps/ene/type Lin
+# /gps/ene/min 100 MeV
+# /gps/ene/max 500 MeV
+# /gps/ene/gradient 0.0
+# /gps/ene/intercept 1.0
+# /gps/ang/type iso
+
+
+# /control/verbose 1
+# /run/verbose 1
 #/tracking/verbose 1
-/event/verbose 1
+# /event/verbose 1
 
 /run/initialize
 

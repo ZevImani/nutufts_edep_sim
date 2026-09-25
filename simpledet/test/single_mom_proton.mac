@@ -1,0 +1,69 @@
+/edep/random/timeRandomSeed
+
+# set edep
+/edep/db/set/saveAllPrimTraj true
+/edep/db/set/lengthThreshold 0.5 mm
+/edep/db/set/trajectoryAccuracy 0.5 mm
+/edep/db/set/neutronThreshold 10 MeV
+/edep/db/set/gammaThreshold 5.0 MeV
+/edep/hitLength LArD 0.5 mm 
+/edep/hitLength drift 0.5 mm
+/edep/hitLength cryo 0.5 mm
+/edep/phys/allCuts 0.5 mm
+/edep/update
+
+# /gun/particle proton
+# /gun/momentum 389.8 -32.53 245.2 MeV 
+
+
+## Custom Momentum generator 
+/gps/particle proton
+/gps/position 0.0 0.0 0.0 cm
+/gps/ene/type Mono
+
+## Sample 1 (LDM = [314.0, -126.4, 249.1])
+# /gps/ene/mono 89.82 MeV # kinetic energy = sqrt(px**2 + py**2 + pz**2 + mass**2) - mass
+# /gps/direction 249.1 -126.4 314.0 # (z,y,x)
+
+## Sample 2  (LDM = 292.5, 130.7, 70.8)
+# /gps/ene/mono 55.71 MeV 
+# /gps/direction 70.8 130.7 292.5 # (z,y,x)
+
+## Sample 3  (LDM = -382.6 2.8 -16.3)
+# /gps/ene/mono 75.14 MeV 
+# /gps/direction -16.3 2.8 -382.6 # (z,y,x)
+
+## Sample 4 (LDM = -391.4 -99.7 -217.9)
+/gps/ene/mono 106.23 MeV 
+/gps/direction -217.9 -99.7 -391.4 # (z,y,x)
+
+## these shouldn't work
+# /gps/direction 70.8 292.5 130.7 # (z,x,y)
+# /gps/direction 292.5 70.8  130.7 # (x,z,y)
+# /gps/direction 130.7 292.5 70.8 # (x,y,z)
+# /gps/direction 292.5 130.7 70.8 # (y,z,x)
+# /gps/direction 130.7 70.8 292.5 # (x,y,z)
+
+
+
+
+# /gps/direction 314.0 -126.4 249.1 ##sample1 = (z,y,x)
+
+# /gps/ene/mono = kinetic energy = sqrt(px**2 + py**2 + pz**2 + mass**2) - mass
+
+
+## Kinetic energy 
+# mag = np.sqrt(x**2 + y**2 + z**2)
+# mass = 938.272
+# totalE = np.sqrt(mag**2 + mass**2)
+# KE = totalE - mass 
+
+# /control/verbose 1
+# /run/verbose 1
+# /tracking/verbose 1
+# /event/verbose 1
+
+/run/initialize
+
+# Turn off optical processes
+/process/inactivate Cerenkov

@@ -145,3 +145,9 @@ fi
     #    export LD_LIBRARY_PATH="${LIBTORCH_LIBDIR}:${LD_LIBRARY_PATH}"
 echo "Key env variables set"
 echo "EDEPSIM_DIR=${EDEPSIM_DIR}"
+
+## Custom Edits  
+alias ls='ls --color=auto'
+alias zlab='cd /cluster/tufts/wongjiradlabnu/zimani01'
+
+export PS1='\[\e[1;32m\]Singularity~\[\e[1;34m\]/${PWD/*\//}\[\e[1;37m\]> \[\e[0m\]'

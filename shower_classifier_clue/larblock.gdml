@@ -58,6 +58,13 @@
       <solidref ref="LArSolid"/>
       <auxiliary auxtype="SensDet" auxvalue="drift"/>
       <auxiliary auxtype="EField" auxvalue="(500.0 V/cm, 0.0 V/m, 0.0 V/m)"/>
+      <!-- <auxiliary auxtype="StepLimit" auxvalue="300.0 mm"/> -->
+
+        <!-- VOXELIZATION SETTINGS -->
+      <!-- <auxiliary auxtype="Segmentation" auxvalue="voxel"/>
+      <auxiliary auxtype="VoxelSizeX" auxvalue="300.0 mm"/>
+      <auxiliary auxtype="VoxelSizeY" auxvalue="300.0 mm"/>
+      <auxiliary auxtype="VoxelSizeZ" auxvalue="300.0 mm"/> -->
     </volume>
         
     <volume name="World">

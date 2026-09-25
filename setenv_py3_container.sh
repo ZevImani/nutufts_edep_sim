@@ -46,3 +46,7 @@ echo "EDEPSIM_DIR=${EDEPSIM_DIR}"
 echo "SIMPLEDET_DIR=${SIMPLEDET_DIR}"
 echo "PETASTORM_DIR=${PETASTORM_DIR}"
 echo "DARKNEWS_DIR=${DARKNEWS_DIR}"
+
+alias ls='ls --color=auto'
+alias zlab='cd /cluster/tufts/wongjiradlabnu/zimani01'
+alias zimani='cd /exp/uboone/app/users/imani'
